@@ -6,6 +6,7 @@ function calculateRainbowNumber() {
     }
     // 将日期分解为年、月、日
     let [year, month, day] = birthdate.split('-').map(Number);
+    const birthdate1 = `${year}/${String(month).padStart(2, '0')}/${String(day).padStart(2, '0')}`;
 
     // 使用Lunar.js将阳历转换为阴历
     let lunar = Solar.fromYmd(year, month, day).getLunar();
@@ -13,6 +14,8 @@ function calculateRainbowNumber() {
     let lunarYear = lunar.getYear();
     let lunarMonth = lunar.getMonth();
     let lunarDay = lunar.getDay();
+    const lunarBirthdate = `${lunarYear}/${String(lunarMonth).padStart(2, '0')}/${String(lunarDay).padStart(2, '0')}`;
+
 
        // 阳历彩虹数字计算
        let solarSum = calculateSum(birthdate);
@@ -23,8 +26,8 @@ function calculateRainbowNumber() {
        let lunarRainbowNumber = formatRainbowNumber(lunarSum);
    
        document.getElementById('result').innerHTML = 
-           `阳历彩虹数字: +${solarRainbowNumber} <br> 阴历彩虹数字: -${lunarRainbowNumber}`;
-   }
+       `阳历生日：${birthdate1}，彩虹数字：+${solarRainbowNumber}<br>` + 
+       `阴历生日：${lunarBirthdate}，彩虹数字：-${lunarRainbowNumber}`;   }
    
 function calculateSum(dateString) {
     let digits = dateString.replace(/-/g, '').split('');
